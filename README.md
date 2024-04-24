@@ -4,6 +4,8 @@ Decompiling this was a pain in the ass.
 
 To compare, I decompiled the original version versus the decompiled code of this project.
 
+This was unfortunately done manually.
+
 Most of the `TODO()` calls or `// TODO:` comments are stuff that doesnt match up with the decompiled code.
 
 This also uses an outdated version of the Lunar Client plugin.
