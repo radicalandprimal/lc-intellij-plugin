@@ -1,0 +1,28 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <version>1.2.0</version>
+  <change-notes>&lt;ul&gt;&lt;li&gt;Support and require IDEA 2023.2&lt;/li&gt;&lt;li&gt;Kind of support new UI (icons are a bit wonky)&lt;/li&gt;&lt;li&gt;Support &lt;code&gt;break&lt;/code&gt; and &lt;code&gt;continue&lt;/code&gt; as exits for version checks&lt;/li&gt;&lt;li&gt;Improvement: Fix project sometimes not being detected as Lunar&lt;/li&gt;&lt;/ul&gt;</change-notes>
+  <description>&lt;p&gt;Provides inspections and actions to help the internal development of LunarClient.&lt;/p&gt;</description>
+  <idea-version since-build="232.5150.116" until-build="232.*" />
+  <id>com.moonsworth.lunar.idea.plugin</id>
+  <name>LunarClient Development</name>
+  <vendor>Moonsworth</vendor>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.java</depends>
+  <depends>com.demonwav.minecraft-dev</depends>
+  <resource-bundle>messages.MyBundle</resource-bundle>
+  <extensions defaultExtensionNs="com.intellij">
+    <iconMapper mappingFile="LunarClientDevelopmentIconMappings.json" />
+    <localInspection implementationClass="com.moonsworth.lunar.idea.inspections.ComptimeOnlyInspection" language="JAVA" displayName="Usages of members that are compile-time only" groupKey="group" enabledByDefault="true" level="ERROR" />
+    <localInspection implementationClass="com.moonsworth.lunar.idea.inspections.McVersionInspection" language="JAVA" displayName="OmniMixin versioned member usages" groupKey="group" enabledByDefault="true" level="ERROR" />
+  </extensions>
+  <applicationListeners>
+    <listener class="com.moonsworth.lunar.idea.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener" />
+  </applicationListeners>
+  <actions>
+    <action id="com.moonsworth.lunar.idea.actions.RunLunarClientAction" class="com.moonsworth.lunar.idea.actions.RunLunarClientAction" text="Run Lunar Client" description="Launch LunarClient config">
+      <add-to-group group-id="ToolbarRunGroup" anchor="after" relative-to-action="RunnerActions" />
+      <add-to-group group-id="RunToolbarMainActionGroup" anchor="after" relative-to-action="NewUiRunWidget" />
+    </action>
+  </actions>
+</idea-plugin>
